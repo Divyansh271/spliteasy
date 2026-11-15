@@ -1,0 +1,6 @@
+{
+  "name": "SplitEasy",
+  "description": "A clean, mobile-first PWA for splitting group expenses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
