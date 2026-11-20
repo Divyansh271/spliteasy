@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { requireSupabase } from './supabase';
 import type { Group, GroupMemberProfile } from './types';
 
 function mapGroupError(error: unknown): string {
@@ -29,7 +29,7 @@ function mapGroupError(error: unknown): string {
 
 export async function listMyGroups(): Promise<Group[]> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await requireSupabase()
       .from('groups')
       .select('id, name, join_code, created_by, created_at')
       .order('created_at', { ascending: false });
@@ -46,7 +46,7 @@ export async function listMyGroups(): Promise<Group[]> {
 
 export async function getGroupById(groupId: string): Promise<Group | null> {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await requireSupabase()
       .from('groups')
       .select('id, name, join_code, created_by, created_at')
       .eq('id', groupId)
@@ -69,7 +69,7 @@ export async function createGroup(name: string): Promise<Group> {
   }
 
   try {
-    const { data, error } = await supabase.rpc('create_group', { name: trimmed });
+    const { data, error } = await requireSupabase().rpc('create_group', { name: trimmed });
 
     if (error) {
       throw new Error(mapGroupError(error));
@@ -92,7 +92,7 @@ export async function joinGroupByCode(code: string): Promise<Group> {
   }
 
   try {
-    const { data, error } = await supabase.rpc('join_group_by_code', { code: trimmed });
+    const { data, error } = await requireSupabase().rpc('join_group_by_code', { code: trimmed });
 
     if (error) {
       throw new Error(mapGroupError(error));
@@ -110,7 +110,7 @@ export async function joinGroupByCode(code: string): Promise<Group> {
 
 export async function getGroupMembers(groupId: string): Promise<GroupMemberProfile[]> {
   try {
-    const { data, error } = await supabase.rpc('get_group_members', { gid: groupId });
+    const { data, error } = await requireSupabase().rpc('get_group_members', { gid: groupId });
 
     if (error) {
       throw new Error(mapGroupError(error));

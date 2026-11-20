@@ -1,5 +1,5 @@
 import type { AuthChangeEvent, Session, User } from '@supabase/supabase-js';
-import { supabase } from './supabase';
+import { requireSupabase } from './supabase';
 import type { AuthUser, Profile } from './types';
 
 function mapAuthError(error: unknown): string {
@@ -52,7 +52,7 @@ export function extractAuthUser(user: User, profile?: Profile | null): AuthUser 
 }
 
 export async function getSession(): Promise<Session | null> {
-  const { data, error } = await supabase.auth.getSession();
+  const { data, error } = await requireSupabase().auth.getSession();
   if (error) {
     throw new Error(mapAuthError(error));
   }
@@ -64,7 +64,7 @@ export function onAuthStateChange(
 ): () => void {
   const {
     data: { subscription },
-  } = supabase.auth.onAuthStateChange(callback);
+  } = requireSupabase().auth.onAuthStateChange(callback);
 
   return () => {
     subscription.unsubscribe();
@@ -81,7 +81,7 @@ export async function signInWithPassword(email: string, password: string): Promi
   }
 
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await requireSupabase().auth.signInWithPassword({
       email: cleanEmail,
       password,
     });
@@ -120,7 +120,7 @@ export async function signUpWithEmail(
   }
 
   try {
-    const { data, error } = await supabase.auth.signUp({
+    const { data, error } = await requireSupabase().auth.signUp({
       email: cleanEmail,
       password,
       options: {
@@ -143,7 +143,7 @@ export async function signUpWithEmail(
 
 export async function signOut(): Promise<void> {
   try {
-    const { error } = await supabase.auth.signOut();
+    const { error } = await requireSupabase().auth.signOut();
     if (error) {
       throw new Error(mapAuthError(error));
     }
@@ -153,7 +153,7 @@ export async function signOut(): Promise<void> {
 }
 
 export async function getMyProfile(userId: string): Promise<Profile | null> {
-  const { data, error } = await supabase
+  const { data, error } = await requireSupabase()
     .from('profiles')
     .select('id, name, created_at')
     .eq('id', userId)
