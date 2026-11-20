@@ -38,6 +38,15 @@ export interface ExpenseSplit {
   share_paise: number;
 }
 
+export interface ExpenseWithSplits extends Expense {
+  splits: ExpenseSplit[];
+}
+
+export interface SplitInput {
+  user_id: string;
+  share_paise: number;
+}
+
 export interface Settlement {
   id: string;
   group_id: string;
@@ -45,6 +54,12 @@ export interface Settlement {
   to_user: string;
   amount_paise: number;
   created_at: string;
+}
+
+export interface SuggestedTransfer {
+  from_user: string;
+  to_user: string;
+  amount_paise: number;
 }
 
 export interface AuthUser {
