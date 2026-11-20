@@ -11,7 +11,7 @@ export function getStoredTheme(): ThemePreference {
   } catch {
     // Ignore storage access errors in restricted contexts
   }
-  return 'system';
+  return 'light';
 }
 
 export function resolveIsDark(pref: ThemePreference): boolean {
