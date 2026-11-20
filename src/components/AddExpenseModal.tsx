@@ -168,20 +168,20 @@ export function AddExpenseModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="add-expense-title"
-      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 backdrop-blur-xs sm:items-center sm:p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 backdrop-blur-xs dark:bg-black/70 sm:items-center sm:p-4"
     >
-      <div className="flex max-h-[90vh] w-full max-w-lg flex-col rounded-t-3xl bg-white shadow-xl sm:rounded-2xl">
-        <div className="mx-auto mt-2.5 h-1.5 w-10 rounded-full bg-slate-300 sm:hidden" />
+      <div className="flex max-h-[90vh] w-full max-w-lg flex-col rounded-t-3xl bg-white shadow-xl dark:border dark:border-slate-800 dark:bg-slate-900 sm:rounded-2xl">
+        <div className="mx-auto mt-2.5 h-1.5 w-10 rounded-full bg-slate-300 dark:bg-slate-700 sm:hidden" />
 
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5">
-          <h2 id="add-expense-title" className="text-base font-semibold text-slate-900">
+        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3.5 dark:border-slate-800">
+          <h2 id="add-expense-title" className="text-base font-semibold text-slate-900 dark:text-slate-100">
             Add expense
           </h2>
           <button
             type="button"
             onClick={onClose}
             disabled={submitting}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-800"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
             aria-label="Close"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -195,14 +195,14 @@ export function AddExpenseModal({
             {error && (
               <div
                 role="alert"
-                className="rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm text-red-700"
+                className="rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/50 dark:text-red-300"
               >
                 {error}
               </div>
             )}
 
             <div>
-              <label htmlFor="expense-desc" className="mb-1.5 block text-sm font-medium text-slate-700">
+              <label htmlFor="expense-desc" className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Description
               </label>
               <input
@@ -213,13 +213,13 @@ export function AddExpenseModal({
                 placeholder="e.g. Dinner, Cab fare, Groceries"
                 maxLength={100}
                 disabled={submitting}
-                className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
               />
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="expense-amount" className="mb-1.5 block text-sm font-medium text-slate-700">
+                <label htmlFor="expense-amount" className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
                   Amount (₹)
                 </label>
                 <input
@@ -230,12 +230,12 @@ export function AddExpenseModal({
                   onChange={(e) => setAmountInput(e.target.value)}
                   placeholder="0.00"
                   disabled={submitting}
-                  className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 font-mono text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3.5 font-mono text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="expense-payer" className="mb-1.5 block text-sm font-medium text-slate-700">
+                <label htmlFor="expense-payer" className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
                   Paid by
                 </label>
                 <select
@@ -243,7 +243,7 @@ export function AddExpenseModal({
                   value={paidBy}
                   onChange={(e) => setPaidBy(e.target.value)}
                   disabled={submitting}
-                  className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-base text-slate-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
                 >
                   {members.map((m) => (
                     <option key={m.user_id} value={m.user_id}>
@@ -256,15 +256,15 @@ export function AddExpenseModal({
 
             <div>
               <div className="mb-2 flex items-center justify-between gap-2">
-                <span className="text-sm font-medium text-slate-700">Split</span>
-                <div className="inline-flex rounded-xl bg-slate-100 p-1">
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Split</span>
+                <div className="inline-flex rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
                   <button
                     type="button"
                     onClick={() => setSplitMode('equal')}
                     className={`min-h-[36px] rounded-lg px-3 text-xs font-semibold transition-colors whitespace-nowrap ${
                       splitMode === 'equal'
-                        ? 'bg-white text-slate-900 shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-white text-slate-900 shadow-xs dark:bg-slate-950 dark:text-slate-100'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
                     }`}
                   >
                     Equal
@@ -274,8 +274,8 @@ export function AddExpenseModal({
                     onClick={() => setSplitMode('exact')}
                     className={`min-h-[36px] rounded-lg px-3 text-xs font-semibold transition-colors whitespace-nowrap ${
                       splitMode === 'exact'
-                        ? 'bg-white text-slate-900 shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'bg-white text-slate-900 shadow-xs dark:bg-slate-950 dark:text-slate-100'
+                        : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
                     }`}
                   >
                     Exact amounts
@@ -284,14 +284,14 @@ export function AddExpenseModal({
               </div>
 
               {splitMode === 'equal' ? (
-                <div className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200">
+                <div className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
                   {members.map((m) => {
                     const checked = selectedIds.includes(m.user_id);
                     const preview = equalPreviewMap.get(m.user_id);
                     return (
                       <label
                         key={m.user_id}
-                        className="flex min-h-[48px] cursor-pointer items-center justify-between gap-3 px-3.5 py-2 hover:bg-slate-50"
+                        className="flex min-h-[48px] cursor-pointer items-center justify-between gap-3 px-3.5 py-2 hover:bg-slate-50 dark:hover:bg-slate-800/60"
                       >
                         <span className="flex min-w-0 items-center gap-3">
                           <input
@@ -299,13 +299,13 @@ export function AddExpenseModal({
                             checked={checked}
                             onChange={() => toggleMember(m.user_id)}
                             disabled={submitting}
-                            className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                            className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 dark:border-slate-600 dark:bg-slate-950"
                           />
-                          <span className="truncate text-sm font-medium text-slate-800">
+                          <span className="truncate text-sm font-medium text-slate-800 dark:text-slate-200">
                             {m.user_id === currentUserId ? `${m.name} (You)` : m.name}
                           </span>
                         </span>
-                        <span className="shrink-0 font-mono text-xs font-medium text-slate-600 tabular-nums">
+                        <span className="shrink-0 font-mono text-xs font-medium text-slate-600 tabular-nums dark:text-slate-400">
                           {checked && preview !== undefined ? formatINR(preview) : '₹0.00'}
                         </span>
                       </label>
@@ -314,7 +314,7 @@ export function AddExpenseModal({
                 </div>
               ) : (
                 <div className="space-y-2.5">
-                  <div className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200">
+                  <div className="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
                     {members.map((m) => (
                       <div
                         key={m.user_id}
@@ -322,12 +322,12 @@ export function AddExpenseModal({
                       >
                         <label
                           htmlFor={`exact-${m.user_id}`}
-                          className="min-w-0 flex-1 truncate text-sm font-medium text-slate-800"
+                          className="min-w-0 flex-1 truncate text-sm font-medium text-slate-800 dark:text-slate-200"
                         >
                           {m.user_id === currentUserId ? `${m.name} (You)` : m.name}
                         </label>
-                        <div className="flex w-32 shrink-0 items-center rounded-lg border border-slate-300 bg-white px-2.5 focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-500/20">
-                          <span className="text-xs text-slate-400">₹</span>
+                        <div className="flex w-32 shrink-0 items-center rounded-lg border border-slate-300 bg-white px-2.5 focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-500/20 dark:border-slate-700 dark:bg-slate-950">
+                          <span className="text-xs text-slate-400 dark:text-slate-500">₹</span>
                           <input
                             id={`exact-${m.user_id}`}
                             type="text"
@@ -341,7 +341,7 @@ export function AddExpenseModal({
                             }
                             placeholder="0.00"
                             disabled={submitting}
-                            className="h-9 w-full bg-transparent pl-1 text-right font-mono text-sm text-slate-900 focus:outline-none"
+                            className="h-9 w-full bg-transparent pl-1 text-right font-mono text-sm text-slate-900 focus:outline-none dark:text-slate-100"
                           />
                         </div>
                       </div>
@@ -352,8 +352,8 @@ export function AddExpenseModal({
                     <p
                       className={`text-right font-mono text-xs font-medium tabular-nums ${
                         remainingExactPaise === 0
-                          ? 'text-emerald-700'
-                          : 'text-amber-700'
+                          ? 'text-emerald-700 dark:text-emerald-400'
+                          : 'text-amber-700 dark:text-amber-400'
                       }`}
                     >
                       {remainingExactPaise === 0
@@ -368,11 +368,11 @@ export function AddExpenseModal({
             </div>
           </div>
 
-          <div className="border-t border-slate-100 px-5 py-3.5 pb-safe">
+          <div className="border-t border-slate-100 px-5 py-3.5 pb-safe dark:border-slate-800">
             <button
               type="submit"
               disabled={submitting}
-              className="flex h-12 w-full items-center justify-center rounded-xl bg-emerald-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex h-12 w-full items-center justify-center rounded-xl bg-emerald-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-slate-900"
             >
               {submitting ? 'Saving expense...' : 'Save expense'}
             </button>

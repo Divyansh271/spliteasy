@@ -211,21 +211,21 @@ export function GroupDetail() {
     <Layout title={group ? group.name : 'Group'} backTo="/">
       {loading ? (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
-            <div className="h-6 w-48 animate-pulse rounded bg-slate-200" />
-            <div className="mt-3 h-10 w-full animate-pulse rounded-xl bg-slate-100" />
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+            <div className="h-6 w-48 animate-pulse rounded bg-slate-200 dark:bg-slate-800" />
+            <div className="mt-3 h-10 w-full animate-pulse rounded-xl bg-slate-100 dark:bg-slate-800/70" />
           </div>
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
-            <div className="h-4 w-28 animate-pulse rounded bg-slate-200" />
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
+            <div className="h-4 w-28 animate-pulse rounded bg-slate-200 dark:bg-slate-800" />
             <div className="mt-4 space-y-3">
-              <div className="h-14 w-full animate-pulse rounded-xl bg-slate-100" />
-              <div className="h-14 w-full animate-pulse rounded-xl bg-slate-100" />
+              <div className="h-14 w-full animate-pulse rounded-xl bg-slate-100 dark:bg-slate-800/70" />
+              <div className="h-14 w-full animate-pulse rounded-xl bg-slate-100 dark:bg-slate-800/70" />
             </div>
           </div>
         </div>
       ) : error || !group ? (
-        <div className="rounded-2xl border border-red-200 bg-white p-6 text-center shadow-xs">
-          <p className="text-sm text-red-700">{error ?? 'Group unavailable.'}</p>
+        <div className="rounded-2xl border border-red-200 bg-white p-6 text-center shadow-xs dark:border-red-900/60 dark:bg-slate-900">
+          <p className="text-sm text-red-700 dark:text-red-300">{error ?? 'Group unavailable.'}</p>
           <div className="mt-4 flex flex-wrap justify-center gap-3">
             <button
               type="button"
@@ -236,7 +236,7 @@ export function GroupDetail() {
             </button>
             <Link
               to="/"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
             >
               Back to groups
             </Link>
@@ -245,44 +245,47 @@ export function GroupDetail() {
       ) : (
         <div className="space-y-5">
           {/* Group Summary & Primary Actions */}
-          <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs">
+          <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0 flex-1">
-                <h2 className="truncate text-xl font-bold tracking-tight text-slate-900">
+                <h2 className="truncate text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                   {group.name}
                 </h2>
-                <p className="mt-0.5 text-xs text-slate-500">
+                <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                   {members.length} {members.length === 1 ? 'member' : 'members'}
                   <span aria-hidden="true"> · </span>
-                  Code <span className="font-mono font-semibold text-slate-700">{group.join_code}</span>
+                  Code{' '}
+                  <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">
+                    {group.join_code}
+                  </span>
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => void handleCopyCode()}
-                className="inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 whitespace-nowrap"
+                className="inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 whitespace-nowrap"
               >
                 {copied ? 'Code copied' : 'Copy code'}
               </button>
             </div>
 
-            <div className="mt-4 border-t border-slate-100 pt-4">
+            <div className="mt-4 border-t border-slate-100 pt-4 dark:border-slate-800">
               {myBalancePaise > 0 ? (
-                <p className="text-sm font-medium text-emerald-700">
+                <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
                   You are owed{' '}
                   <span className="font-mono font-semibold tabular-nums">
                     {formatINR(myBalancePaise)}
                   </span>
                 </p>
               ) : myBalancePaise < 0 ? (
-                <p className="text-sm font-medium text-rose-700">
+                <p className="text-sm font-medium text-rose-700 dark:text-rose-400">
                   You owe{' '}
                   <span className="font-mono font-semibold tabular-nums">
                     {formatINR(-myBalancePaise)}
                   </span>
                 </p>
               ) : (
-                <p className="text-sm font-medium text-slate-600">
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
                   You are settled up in this group
                 </p>
               )}
@@ -291,7 +294,7 @@ export function GroupDetail() {
                 <button
                   type="button"
                   onClick={() => setShowAddExpense(true)}
-                  className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-emerald-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 whitespace-nowrap"
+                  className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-emerald-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 whitespace-nowrap"
                 >
                   Add expense
                 </button>
@@ -299,7 +302,7 @@ export function GroupDetail() {
                   type="button"
                   disabled={members.length < 2}
                   onClick={() => setSettlePreset({ open: true })}
-                  className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-emerald-600 bg-emerald-50 px-4 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 whitespace-nowrap"
+                  className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-emerald-600 bg-emerald-50 px-4 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 dark:border-emerald-500 dark:bg-emerald-950/60 dark:text-emerald-300 dark:hover:bg-emerald-900/60 dark:focus-visible:ring-offset-slate-900 dark:disabled:border-slate-800 dark:disabled:bg-slate-800/50 dark:disabled:text-slate-500 whitespace-nowrap"
                 >
                   Settle up
                 </button>
@@ -310,21 +313,21 @@ export function GroupDetail() {
           {actionError && (
             <div
               role="alert"
-              className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+              className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/50 dark:text-red-300"
             >
               {actionError}
             </div>
           )}
 
           {/* Segmented Navigation Tabs */}
-          <div className="grid grid-cols-3 gap-1 rounded-xl bg-slate-200/70 p-1">
+          <div className="grid grid-cols-3 gap-1 rounded-xl bg-slate-200/70 p-1 dark:bg-slate-800/80">
             <button
               type="button"
               onClick={() => setActiveTab('expenses')}
               className={`min-h-[40px] rounded-lg px-2 text-xs font-semibold transition-colors whitespace-nowrap ${
                 activeTab === 'expenses'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-slate-900 shadow-xs dark:bg-slate-950 dark:text-slate-100'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
               }`}
             >
               Activity ({activityFeed.length})
@@ -334,8 +337,8 @@ export function GroupDetail() {
               onClick={() => setActiveTab('balances')}
               className={`min-h-[40px] rounded-lg px-2 text-xs font-semibold transition-colors whitespace-nowrap ${
                 activeTab === 'balances'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-slate-900 shadow-xs dark:bg-slate-950 dark:text-slate-100'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
               }`}
             >
               Balances ({suggestedTransfers.length})
@@ -345,8 +348,8 @@ export function GroupDetail() {
               onClick={() => setActiveTab('members')}
               className={`min-h-[40px] rounded-lg px-2 text-xs font-semibold transition-colors whitespace-nowrap ${
                 activeTab === 'members'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-slate-900 shadow-xs dark:bg-slate-950 dark:text-slate-100'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
               }`}
             >
               Members ({members.length})
@@ -357,9 +360,11 @@ export function GroupDetail() {
           {activeTab === 'expenses' && (
             <section aria-label="Group activity">
               {activityFeed.length === 0 ? (
-                <div className="rounded-2xl border border-slate-200/80 bg-white px-5 py-9 text-center shadow-xs">
-                  <h3 className="text-base font-semibold text-slate-900">No expenses yet</h3>
-                  <p className="mx-auto mt-1 max-w-xs text-sm text-slate-500">
+                <div className="rounded-2xl border border-slate-200/80 bg-white px-5 py-9 text-center shadow-xs dark:border-slate-800 dark:bg-slate-900">
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                    No expenses yet
+                  </h3>
+                  <p className="mx-auto mt-1 max-w-xs text-sm text-slate-500 dark:text-slate-400">
                     Add your first shared expense to start tracking who owes whom.
                   </p>
                   <button
@@ -371,7 +376,7 @@ export function GroupDetail() {
                   </button>
                 </div>
               ) : (
-                <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
+                <ul className="divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
                   {activityFeed.map((item) => {
                     if (item.kind === 'settlement') {
                       const s = item.settlement;
@@ -388,27 +393,27 @@ export function GroupDetail() {
                               setExpandedItemKey(isExpanded ? null : key);
                               setConfirmDeleteKey(null);
                             }}
-                            className="flex min-h-[64px] w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50"
+                            className="flex min-h-[64px] w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60"
                           >
                             <div className="min-w-0 flex-1">
-                              <p className="truncate text-sm font-medium text-slate-900">
+                              <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                                 {getLabelName(s.from_user)} paid {getLabelName(s.to_user)}
                               </p>
-                              <p className="mt-0.5 text-xs text-slate-500">
+                              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                                 Settlement
                                 {s.created_at ? ` · ${formatShortDate(s.created_at)}` : ''}
                               </p>
                             </div>
-                            <span className="shrink-0 font-mono text-sm font-semibold text-emerald-700 tabular-nums">
+                            <span className="shrink-0 font-mono text-sm font-semibold text-emerald-700 tabular-nums dark:text-emerald-400">
                               {formatINR(s.amount_paise)}
                             </span>
                           </button>
 
                           {isExpanded && (
-                            <div className="border-t border-slate-100 bg-slate-50/70 px-4 py-3">
+                            <div className="border-t border-slate-100 bg-slate-50/70 px-4 py-3 dark:border-slate-800 dark:bg-slate-800/40">
                               {isConfirming ? (
                                 <div className="flex flex-wrap items-center justify-between gap-2">
-                                  <span className="text-xs font-medium text-slate-700">
+                                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
                                     Delete this settlement?
                                   </span>
                                   <div className="flex items-center gap-2">
@@ -416,7 +421,7 @@ export function GroupDetail() {
                                       type="button"
                                       onClick={() => setConfirmDeleteKey(null)}
                                       disabled={isDeleting}
-                                      className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                                      className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                                     >
                                       Cancel
                                     </button>
@@ -435,7 +440,7 @@ export function GroupDetail() {
                                   <button
                                     type="button"
                                     onClick={() => setConfirmDeleteKey(key)}
-                                    className="inline-flex min-h-[36px] items-center rounded-lg px-3 text-xs font-semibold text-red-700 hover:bg-red-50"
+                                    className="inline-flex min-h-[36px] items-center rounded-lg px-3 text-xs font-semibold text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/60"
                                   >
                                     Delete settlement
                                   </button>
@@ -466,29 +471,29 @@ export function GroupDetail() {
                             setExpandedItemKey(isExpanded ? null : key);
                             setConfirmDeleteKey(null);
                           }}
-                          className="flex min-h-[68px] w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50"
+                          className="flex min-h-[68px] w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60"
                         >
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-semibold text-slate-900">
+                            <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
                               {e.description}
                             </p>
-                            <p className="mt-0.5 truncate text-xs text-slate-500">
+                            <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">
                               Paid by {getLabelName(e.paid_by)}
                               {e.created_at ? ` · ${formatShortDate(e.created_at)}` : ''}
                             </p>
                           </div>
 
                           <div className="shrink-0 text-right">
-                            <p className="font-mono text-sm font-semibold text-slate-900 tabular-nums">
+                            <p className="font-mono text-sm font-semibold text-slate-900 tabular-nums dark:text-slate-100">
                               {formatINR(e.amount_paise)}
                             </p>
                             <p
                               className={`mt-0.5 font-mono text-xs font-medium tabular-nums ${
                                 netEffectPaise > 0
-                                  ? 'text-emerald-700'
+                                  ? 'text-emerald-700 dark:text-emerald-400'
                                   : netEffectPaise < 0
-                                    ? 'text-rose-700'
-                                    : 'text-slate-400'
+                                    ? 'text-rose-700 dark:text-rose-400'
+                                    : 'text-slate-400 dark:text-slate-500'
                               }`}
                             >
                               {netEffectPaise > 0
@@ -501,15 +506,15 @@ export function GroupDetail() {
                         </button>
 
                         {isExpanded && (
-                          <div className="border-t border-slate-100 bg-slate-50/70 px-4 py-3.5">
-                            <p className="text-xs font-semibold text-slate-600">
+                          <div className="border-t border-slate-100 bg-slate-50/70 px-4 py-3.5 dark:border-slate-800 dark:bg-slate-800/40">
+                            <p className="text-xs font-semibold text-slate-600 dark:text-slate-400">
                               Split breakdown
                             </p>
                             <ul className="mt-2 space-y-1.5">
                               {e.splits.map((sp) => (
                                 <li
                                   key={sp.user_id}
-                                  className="flex items-center justify-between text-xs text-slate-700"
+                                  className="flex items-center justify-between text-xs text-slate-700 dark:text-slate-300"
                                 >
                                   <span className="truncate">{getLabelName(sp.user_id)}</span>
                                   <span className="font-mono font-medium tabular-nums">
@@ -519,10 +524,10 @@ export function GroupDetail() {
                               ))}
                             </ul>
 
-                            <div className="mt-3.5 border-t border-slate-200/70 pt-3">
+                            <div className="mt-3.5 border-t border-slate-200/70 pt-3 dark:border-slate-700">
                               {isConfirming ? (
                                 <div className="flex flex-wrap items-center justify-between gap-2">
-                                  <span className="text-xs font-medium text-slate-700">
+                                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
                                     Delete this expense?
                                   </span>
                                   <div className="flex items-center gap-2">
@@ -530,7 +535,7 @@ export function GroupDetail() {
                                       type="button"
                                       onClick={() => setConfirmDeleteKey(null)}
                                       disabled={isDeleting}
-                                      className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                                      className="inline-flex min-h-[36px] items-center rounded-lg border border-slate-300 bg-white px-3 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                                     >
                                       Cancel
                                     </button>
@@ -546,13 +551,13 @@ export function GroupDetail() {
                                 </div>
                               ) : (
                                 <div className="flex items-center justify-between">
-                                  <span className="text-xs text-slate-500">
+                                  <span className="text-xs text-slate-500 dark:text-slate-400">
                                     To edit, delete and re-add.
                                   </span>
                                   <button
                                     type="button"
                                     onClick={() => setConfirmDeleteKey(key)}
-                                    className="inline-flex min-h-[36px] items-center rounded-lg px-3 text-xs font-semibold text-red-700 hover:bg-red-50"
+                                    className="inline-flex min-h-[36px] items-center rounded-lg px-3 text-xs font-semibold text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/60"
                                   >
                                     Delete
                                   </button>
@@ -574,33 +579,33 @@ export function GroupDetail() {
             <div className="grid gap-5 lg:grid-cols-12 lg:items-start">
               <section
                 aria-labelledby="settle-plan-heading"
-                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs lg:col-span-7"
+                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 lg:col-span-7"
               >
                 <h3
                   id="settle-plan-heading"
-                  className="text-base font-semibold text-slate-900"
+                  className="text-base font-semibold text-slate-900 dark:text-slate-100"
                 >
                   Suggested settle-up
                 </h3>
 
                 {suggestedTransfers.length === 0 ? (
-                  <p className="mt-3 text-sm text-slate-500">
+                  <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
                     Everyone is settled up! No payments needed.
                   </p>
                 ) : (
-                  <ul className="mt-3 divide-y divide-slate-100">
+                  <ul className="mt-3 divide-y divide-slate-100 dark:divide-slate-800">
                     {suggestedTransfers.map((tr) => (
                       <li
                         key={`${tr.from_user}-${tr.to_user}`}
                         className="flex min-h-[60px] items-center justify-between gap-3 py-3"
                       >
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm text-slate-800">
+                          <p className="text-sm text-slate-800 dark:text-slate-200">
                             <span className="font-semibold">{getLabelName(tr.from_user)}</span>
                             {' owes '}
                             <span className="font-semibold">{getLabelName(tr.to_user)}</span>
                           </p>
-                          <p className="mt-0.5 font-mono text-sm font-semibold text-emerald-700 tabular-nums">
+                          <p className="mt-0.5 font-mono text-sm font-semibold text-emerald-700 tabular-nums dark:text-emerald-400">
                             {formatINR(tr.amount_paise)}
                           </p>
                         </div>
@@ -615,7 +620,7 @@ export function GroupDetail() {
                               amountPaise: tr.amount_paise,
                             })
                           }
-                          className="inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-xl border border-emerald-600 bg-emerald-50 px-3.5 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 whitespace-nowrap"
+                          className="inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-xl border border-emerald-600 bg-emerald-50 px-3.5 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 dark:border-emerald-500 dark:bg-emerald-950/60 dark:text-emerald-300 dark:hover:bg-emerald-900/60 whitespace-nowrap"
                         >
                           Settle
                         </button>
@@ -627,16 +632,16 @@ export function GroupDetail() {
 
               <section
                 aria-labelledby="net-balances-heading"
-                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs lg:col-span-5"
+                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 lg:col-span-5"
               >
                 <h3
                   id="net-balances-heading"
-                  className="text-base font-semibold text-slate-900"
+                  className="text-base font-semibold text-slate-900 dark:text-slate-100"
                 >
                   Net balances
                 </h3>
 
-                <ul className="mt-3 divide-y divide-slate-100">
+                <ul className="mt-3 divide-y divide-slate-100 dark:divide-slate-800">
                   {members.map((m) => {
                     const net = netBalances[m.user_id] ?? 0;
                     const isYou = m.user_id === currentUser.id;
@@ -647,17 +652,17 @@ export function GroupDetail() {
                       >
                         <div className="flex min-w-0 items-center gap-3">
                           <Avatar name={m.name} size="sm" />
-                          <span className="truncate text-sm font-medium text-slate-900">
+                          <span className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                             {isYou ? `${m.name} (You)` : m.name}
                           </span>
                         </div>
                         <span
                           className={`shrink-0 font-mono text-xs font-semibold tabular-nums ${
                             net > 0
-                              ? 'text-emerald-700'
+                              ? 'text-emerald-700 dark:text-emerald-400'
                               : net < 0
-                                ? 'text-rose-700'
-                                : 'text-slate-500'
+                                ? 'text-rose-700 dark:text-rose-400'
+                                : 'text-slate-500 dark:text-slate-400'
                           }`}
                         >
                           {net > 0
@@ -679,21 +684,21 @@ export function GroupDetail() {
             <div className="grid gap-5 lg:grid-cols-12 lg:items-start">
               <section
                 aria-labelledby="members-heading"
-                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs lg:col-span-7"
+                className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 lg:col-span-7"
               >
                 <div className="flex items-center justify-between">
-                  <h3 id="members-heading" className="text-base font-semibold text-slate-900">
+                  <h3 id="members-heading" className="text-base font-semibold text-slate-900 dark:text-slate-100">
                     Group members
                   </h3>
-                  <span className="text-xs font-medium text-slate-500 tabular-nums">
+                  <span className="text-xs font-medium text-slate-500 tabular-nums dark:text-slate-400">
                     {members.length}
                   </span>
                 </div>
 
                 {members.length === 0 ? (
-                  <p className="mt-4 text-sm text-slate-500">No members found.</p>
+                  <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">No members found.</p>
                 ) : (
-                  <ul className="mt-3 divide-y divide-slate-100">
+                  <ul className="mt-3 divide-y divide-slate-100 dark:divide-slate-800">
                     {members.map((member) => {
                       const isYou = member.user_id === currentUser.id;
                       return (
@@ -703,10 +708,10 @@ export function GroupDetail() {
                         >
                           <Avatar name={member.name} size="sm" />
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-slate-900">
+                            <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                               {member.name}
                               {isYou && (
-                                <span className="ml-1.5 text-xs font-normal text-emerald-700">
+                                <span className="ml-1.5 text-xs font-normal text-emerald-700 dark:text-emerald-400">
                                   (You)
                                 </span>
                               )}
@@ -719,13 +724,15 @@ export function GroupDetail() {
                 )}
               </section>
 
-              <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs lg:col-span-5">
-                <h3 className="text-base font-semibold text-slate-900">Invite friends</h3>
-                <p className="mt-1 text-xs text-slate-500">
+              <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 lg:col-span-5">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                  Invite friends
+                </h3>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                   Anyone with this code can join from their Groups tab.
                 </p>
-                <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5">
-                  <span className="font-mono text-lg font-semibold tracking-widest text-slate-900">
+                <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 dark:border-slate-700 dark:bg-slate-800/70">
+                  <span className="font-mono text-lg font-semibold tracking-widest text-slate-900 dark:text-slate-100">
                     {group.join_code}
                   </span>
                   <button

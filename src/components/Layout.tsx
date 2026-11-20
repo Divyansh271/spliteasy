@@ -27,15 +27,15 @@ export function Layout({ title = 'SplitEasy', backTo, children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/95">
         <div className="mx-auto flex h-13 max-w-4xl items-center justify-between gap-3 px-4">
           <div className="flex min-w-0 items-center gap-2">
             {backTo ? (
               <Link
                 to={backTo}
                 aria-label="Back to groups"
-                className="-ml-2 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                className="-ml-2 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-100"
               >
                 <svg
                   className="h-5 w-5"
@@ -55,7 +55,7 @@ export function Layout({ title = 'SplitEasy', backTo, children }: LayoutProps) {
                 S
               </span>
             )}
-            <h1 className="truncate text-base font-semibold tracking-tight text-slate-900">
+            <h1 className="truncate text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               {title}
             </h1>
           </div>
@@ -65,7 +65,7 @@ export function Layout({ title = 'SplitEasy', backTo, children }: LayoutProps) {
       {!isOnline && (
         <div
           role="status"
-          className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-medium text-amber-900"
+          className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs font-medium text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/50 dark:text-amber-200"
         >
           You are offline. Changes will require an internet connection.
         </div>

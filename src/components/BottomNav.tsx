@@ -4,7 +4,7 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md pb-safe"
+      className="fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md pb-safe dark:border-slate-800 dark:bg-slate-900/95"
     >
       <div className="mx-auto grid h-14 max-w-4xl grid-cols-2">
         <NavLink
@@ -13,8 +13,8 @@ export function BottomNav() {
           className={({ isActive }) =>
             `flex min-h-[44px] flex-col items-center justify-center gap-0.5 text-xs font-medium transition-colors whitespace-nowrap ${
               isActive
-                ? 'text-emerald-600'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'text-emerald-600 dark:text-emerald-400'
+                : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
             }`
           }
         >
@@ -45,8 +45,8 @@ export function BottomNav() {
           className={({ isActive }) =>
             `flex min-h-[44px] flex-col items-center justify-center gap-0.5 text-xs font-medium transition-colors whitespace-nowrap ${
               isActive
-                ? 'text-emerald-600'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'text-emerald-600 dark:text-emerald-400'
+                : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
             }`
           }
         >

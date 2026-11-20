@@ -88,22 +88,26 @@ export function AuthGate({ children }: AuthGateProps) {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 dark:bg-slate-950">
         <div
           aria-label="Loading"
-          className="h-9 w-9 animate-spin rounded-full border-3 border-emerald-600 border-t-transparent"
+          className="h-9 w-9 animate-spin rounded-full border-3 border-emerald-600 border-t-transparent dark:border-emerald-400 dark:border-t-transparent"
         />
-        <p className="mt-3 text-sm font-medium text-slate-500">Loading SplitEasy...</p>
+        <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+          Loading SplitEasy...
+        </p>
       </div>
     );
   }
 
   if (initError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 text-center">
-        <div className="w-full max-w-sm rounded-2xl border border-red-200 bg-white p-6 shadow-xs">
-          <h2 className="text-base font-semibold text-slate-900">Connection issue</h2>
-          <p className="mt-2 text-sm text-red-700">{initError}</p>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 text-center dark:bg-slate-950">
+        <div className="w-full max-w-sm rounded-2xl border border-red-200 bg-white p-6 shadow-xs dark:border-red-900/60 dark:bg-slate-900">
+          <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+            Connection issue
+          </h2>
+          <p className="mt-2 text-sm text-red-700 dark:text-red-300">{initError}</p>
           <button
             type="button"
             onClick={() => window.location.reload()}

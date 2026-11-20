@@ -4,11 +4,11 @@ interface AvatarProps {
 }
 
 const PALETTES = [
-  'bg-emerald-100 text-emerald-800',
-  'bg-teal-100 text-teal-800',
-  'bg-sky-100 text-sky-800',
-  'bg-amber-100 text-amber-800',
-  'bg-slate-200 text-slate-800',
+  'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300',
+  'bg-teal-100 text-teal-800 dark:bg-teal-950/70 dark:text-teal-300',
+  'bg-sky-100 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300',
+  'bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300',
+  'bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200',
 ];
 
 function getInitials(name: string): string {
